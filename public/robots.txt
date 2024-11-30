@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rentsol.vercel.app/sitemap.xml
