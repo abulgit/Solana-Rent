@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRentCalculator } from '../hooks/useRentCalculator';
 import { RentInputs } from './RentInputs';
 import { RentResult } from './RentResult';
@@ -11,6 +11,23 @@ const RentCalculator: React.FC = () => {
   const [unit, setUnit] = useState('bytes');
   const { rent, loading, error, calculateRent } = useRentCalculator();
   const [showInfo, setShowInfo] = useState(false);
+  const infoPanelRef = useRef<HTMLDivElement>(null);
+  const infoButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        infoPanelRef.current && 
+        !infoPanelRef.current.contains(event.target as Node) &&
+        !infoButtonRef.current?.contains(event.target as Node)
+      ) {
+        setShowInfo(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleCalculate = () => {
     calculateRent(size, unit);
@@ -18,7 +35,6 @@ const RentCalculator: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-space-900 to-black relative overflow-hidden">
-      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-32 -left-32 w-64 h-64 bg-purple-500/20 rounded-full filter blur-0 md:blur-xl animate-float"></div>
         <div className="absolute -top-64 right-0 w-64 h-64 bg-cyan-500/20 rounded-full filter blur-0 md:blur-xl animate-float-delayed"></div>
@@ -32,29 +48,42 @@ const RentCalculator: React.FC = () => {
         >
           {/* Info button positioned top-right */}
           <button
+            ref={infoButtonRef}
             onClick={() => setShowInfo(!showInfo)}
-            className="absolute top-4 right-4 z-20 p-2 rounded-full bg-gray-700/30 hover:bg-gray-600/40 transition-colors"
+            className="absolute top-4 right-4 z-20 p-2 rounded-full bg-gray-700/30 hover:bg-gray-600/40 transition-colors group"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-cyan-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+            <motion.div
+              animate={{ rotate: showInfo ? 90 : 0 }}
+              transition={{ duration: 0.2 }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-cyan-400 transition-colors group-hover:text-cyan-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {showInfo ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                )}
+              </svg>
+            </motion.div>
           </button>
 
-          {/* Holographic Effect */}
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay"></div>
           
-          {/* Header Section */}
           <div className="space-y-6 text-center">
             <motion.div
               initial={{ scale: 0.9 }}
@@ -65,6 +94,7 @@ const RentCalculator: React.FC = () => {
             </motion.div>
             {showInfo && (
               <motion.div
+                ref={infoPanelRef}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="absolute top-20 left-0 right-0 mx-auto mt-2 max-w-md z-30"
@@ -97,7 +127,6 @@ const RentCalculator: React.FC = () => {
               <span className="text-sm">Connected to Solana Devnet</span>
             </div>
 
-            {/* Result Section */}
             {rent !== null || error ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -108,7 +137,6 @@ const RentCalculator: React.FC = () => {
             ) : null}
           </div>
 
-          {/* Decorative Elements */}
           <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-purple-500/10 rounded-full filter blur-3xl"></div>
           <div className="absolute -top-20 -left-20 w-64 h-64 bg-cyan-500/10 rounded-full filter blur-3xl"></div>
         </motion.div>
