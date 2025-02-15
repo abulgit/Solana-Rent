@@ -35,6 +35,7 @@ const RentCalculator: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-space-900 to-black relative overflow-hidden">
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-32 -left-32 w-64 h-64 bg-purple-500/20 rounded-full filter blur-0 md:blur-xl animate-float"></div>
         <div className="absolute -top-64 right-0 w-64 h-64 bg-cyan-500/20 rounded-full filter blur-0 md:blur-xl animate-float-delayed"></div>
@@ -50,6 +51,7 @@ const RentCalculator: React.FC = () => {
           <button
             ref={infoButtonRef}
             onClick={() => setShowInfo(!showInfo)}
+            aria-label={showInfo ? "Close information panel" : "Open information panel"}
             className="absolute top-4 right-4 z-20 p-2 rounded-full bg-gray-700/30 hover:bg-gray-600/40 transition-colors group"
           >
             <motion.div
@@ -82,8 +84,10 @@ const RentCalculator: React.FC = () => {
             </motion.div>
           </button>
 
+          {/* Holographic Effect */}
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay"></div>
           
+          {/* Header Section */}
           <div className="space-y-6 text-center">
             <motion.div
               initial={{ scale: 0.9 }}
@@ -127,6 +131,7 @@ const RentCalculator: React.FC = () => {
               <span className="text-sm">Connected to Solana Devnet</span>
             </div>
 
+            {/* Result Section */}
             {rent !== null || error ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -137,6 +142,7 @@ const RentCalculator: React.FC = () => {
             ) : null}
           </div>
 
+          {/* Decorative Elements */}
           <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-purple-500/10 rounded-full filter blur-3xl"></div>
           <div className="absolute -top-20 -left-20 w-64 h-64 bg-cyan-500/10 rounded-full filter blur-3xl"></div>
         </motion.div>

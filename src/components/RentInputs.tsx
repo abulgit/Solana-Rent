@@ -43,8 +43,15 @@ export const RentInputs: React.FC<RentInputsProps> = ({
           />
         </div>
         <div className="w-full sm:w-auto relative z-10">
-          <label className="block text-gray-300 text-lg mb-2 ml-1">Unit</label>
+          <label 
+            htmlFor="unit-select" 
+            className="block text-gray-300 text-lg mb-2 ml-1 sr-only"
+          >
+            Storage Unit
+          </label>
           <select
+            id="unit-select"
+            aria-label="Select storage unit"
             value={unit}
             onChange={(e: ChangeEvent<HTMLSelectElement>) => onUnitChange(e.target.value)}
             className="bg-gray-800/50 border-2 border-gray-700/30 rounded-xl h-14 px-5 text-lg text-white 
