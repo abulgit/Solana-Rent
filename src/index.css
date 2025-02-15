@@ -1,19 +1,32 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #000000;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  --border: #e5e7eb;
+/* @keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(3deg); }
 }
 
-.dark {
-  --background: #1a1a1a;
-  --foreground: #ffffff;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  --border: #2d2d2d;
+.animate-float {
+  animation: float 8s ease-in-out infinite;
 }
+
+.animate-float-delayed {
+  animation: float 8s 2s ease-in-out infinite;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+
+select option {
+  background: #1f2937;
+  color: white;
+  padding: 1rem;
+}
+
+select:focus option:checked {
+  background: #3b82f6;
+} */
