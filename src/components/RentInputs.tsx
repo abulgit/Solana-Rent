@@ -45,9 +45,9 @@ export const RentInputs: React.FC<RentInputsProps> = ({
         <div className="w-full sm:w-auto relative z-10">
           <label 
             htmlFor="unit-select" 
-            className="block text-gray-300 text-lg mb-2 ml-1 sr-only"
+            className="block text-gray-300 text-lg mb-2 ml-1"
           >
-            Storage Unit
+            Unit
           </label>
           <select
             id="unit-select"
