@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* @keyframes float {
+@keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-20px) rotate(3deg); }
 }
@@ -29,4 +29,12 @@ select option {
 
 select:focus option:checked {
   background: #3b82f6;
-} */
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}

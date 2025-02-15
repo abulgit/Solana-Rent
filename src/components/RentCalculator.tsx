@@ -4,6 +4,7 @@ import { RentInputs } from './RentInputs';
 import { RentResult } from './RentResult';
 import { motion } from 'framer-motion';
 import { InfoPanel } from './InfoPanel';
+import { RentCalculatorLogo } from './RentCalculatorLogo';
 
 const RentCalculator: React.FC = () => {
   const [size, setSize] = useState('');
@@ -19,15 +20,15 @@ const RentCalculator: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-space-900 to-black relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-purple-500/20 rounded-full filter blur-3xl animate-float"></div>
-        <div className="absolute -top-64 right-0 w-96 h-96 bg-cyan-500/20 rounded-full filter blur-3xl animate-float-delayed"></div>
+        <div className="absolute -top-32 -left-32 w-64 h-64 bg-purple-500/20 rounded-full filter blur-0 md:blur-xl animate-float"></div>
+        <div className="absolute -top-64 right-0 w-64 h-64 bg-cyan-500/20 rounded-full filter blur-0 md:blur-xl animate-float-delayed"></div>
       </div>
 
       <div className="relative container mx-auto px-4 py-16 flex items-center justify-center">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-gradient-to-br from-gray-800/50 to-gray-900/90 backdrop-blur-2xl rounded-xl shadow-2xl p-8 max-w-2xl w-full space-y-8 border border-gray-700/30 relative overflow-hidden"
+          className="bg-gradient-to-br from-gray-800/50 to-gray-900/90 backdrop-blur-0 md:backdrop-blur-2xl rounded-3xl shadow-2xl p-8 max-w-2xl w-full space-y-8 border border-gray-700/30 relative overflow-hidden"
         >
           {/* Info button positioned top-right */}
           <button
@@ -58,17 +59,15 @@ const RentCalculator: React.FC = () => {
             <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
-              className="inline-block"
+              className="inline-block relative"
             >
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                Solana Rent Calculator
-              </h1>
+              <RentCalculatorLogo onToggleInfo={() => setShowInfo(!showInfo)} />
             </motion.div>
             {showInfo && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-4"
+                className="absolute top-20 left-0 right-0 mx-auto mt-2 max-w-md z-30"
               >
                 <InfoPanel />
               </motion.div>

@@ -1,15 +1,15 @@
 import React from 'react';
 
 export const InfoPanel: React.FC = () => (
-  <div className="bg-gray-950/50 rounded-xl p-4 space-y-3 text-sm text-gray-300 border border-gray-800/50 backdrop-blur-sm">
-    <p>
+  <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/90 backdrop-blur-sm md:backdrop-blur-2xl rounded-3xl shadow-2xl p-8 border border-gray-700/30 w-full max-w-2xl">
+    <p className="text-lg text-gray-300">
       <span className="text-[#9945FF] font-semibold">What is Rent? </span>
       Rent ensures efficient blockchain resource usage by requiring accounts to maintain 
       a minimum balance proportional to their data storage.
     </p>
-    <div>
-      <span className="text-[#9945FF] font-semibold">Key Points:</span>
-      <ul className="list-disc list-inside mt-1 space-y-1">
+    <div className="mt-6">
+      <span className="text-[#9945FF] font-semibold text-lg">Key Points:</span>
+      <ul className="list-disc list-inside mt-3 space-y-3 text-gray-300">
         <li>Rent is refundable when an account is closed</li>
         <li>Accounts below rent-exempt threshold may be removed</li>
         <li>Compensates validators for storage resources</li>
